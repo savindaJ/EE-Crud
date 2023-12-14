@@ -60,4 +60,22 @@ function loadAllCustomers() {
     })
 }
 
+
+$('#btnSaveCustomer').on('click',function () {
+   $.ajax({
+       url: baseUrl+"customer",
+       type: "post",
+       dataType: "json",
+       data:{
+           name:"savinda"
+       },
+       success:function (res) {
+
+       },
+       error:function (err) {
+
+       }
+   })
+});
+
 loadAllCustomers();

@@ -64,4 +64,10 @@ public class CustomerServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("post req !");
+        System.out.println(req.getParameter("name"));
+    }
 }
