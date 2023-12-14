@@ -97,13 +97,11 @@ public class CustomerServlet extends HttpServlet {
 
         } catch (ClassNotFoundException | SQLException e) {
             JsonObjectBuilder obj = Json.createObjectBuilder();
-            obj.add("state", "Error");
-            obj.add("message", "Not Successfully saved..!");
-            obj.add("data","");
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            obj.add("state", "err");
+            obj.add("message", e.getLocalizedMessage());
+            obj.add("data", "");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);  // 400 // Client Side Errors
             resp.getWriter().print(obj.build());
-            System.out.println("not !");
-            e.printStackTrace();
         }
 
     }

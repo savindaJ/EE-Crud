@@ -1,12 +1,13 @@
 let baseUrl = "http://192.168.89.174:8081/app/";
-$('.delete').on('click',function (){
-    $(`#tblCustomer tr`).on('click',function () {
+$('.delete').on('click', function () {
+    $(`#tblCustomer tr`).on('click', function () {
         $(this).closest().remove();
     });
 });
+
 function bindEvent() {
-    $('.delete').on('click',function (){
-        $(`#tblCustomer tr`).on('click',function () {
+    $('.delete').on('click', function () {
+        $(`#tblCustomer tr`).on('click', function () {
             $(this).closest("#tblCustomer tr").remove();
         });
     });
@@ -29,10 +30,10 @@ function bindEvent() {
 
 function loadAllCustomers() {
     $.ajax({
-        url: baseUrl+"customer",
+        url: baseUrl + "customer",
         type: "get",
-        dataType:"json",
-        success:function (resp) {
+        dataType: "json",
+        success: function (resp) {
             $(`#body`).empty();
 
             for (const customer of resp.data) {
@@ -50,10 +51,10 @@ function loadAllCustomers() {
                    
                              </tr>`);
 
-               bindEvent();
+                bindEvent();
             }
         },
-        error:function (err) {
+        error: function (err) {
             let parse = JSON.parse(err.responseText);
             alert(parse.message);
         }
@@ -61,26 +62,26 @@ function loadAllCustomers() {
 }
 
 
-$('#btnSaveCustomer').on('click',function () {
-   $.ajax({
-       url: baseUrl+"customer",
-       type: "post",
-       dataType: "json",
-       data:{
-           id: $('#customer-id').val(),
-           name: $('#customer-name').val(),
-           address: $('#customer-address').val(),
-           salary: $('#customer-salary').val()
-       },
-       success:function (res) {
-           loadAllCustomers();
-           alert(res.message);
-       },
-       error:function (err) {
-           let parse = JSON.parse(err.responseText);
-           alert(parse.message);
-       }
-   })
+$('#btnSaveCustomer').on('click', function () {
+    $.ajax({
+        url: baseUrl + "customer",
+        type: "post",
+        dataType: "json",
+        data: {
+            id: $('#customer-id').val(),
+            name: $('#customer-name').val(),
+            address: $('#customer-address').val(),
+            salary: $('#customer-salary').val()
+        },
+        success: function (res) {
+            // loadAllCustomers();
+            alert(res.message);
+        },
+        error: function (err) {
+            let parse = JSON.parse(err.responseText);
+            alert(parse.message);
+        }
+    });
 });
 
 loadAllCustomers();

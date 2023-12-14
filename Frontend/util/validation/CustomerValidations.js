@@ -45,7 +45,7 @@ $("#customer-gmail,#customer-name,#customer-address,#customer-tp").on("keydown k
     //check validations
     checkValidations(c_vArray[indexNo]);
 
-    setBtn();
+    // setBtn();
 
     //If the enter key pressed cheque and focus
     if (e.key == "Enter") {
