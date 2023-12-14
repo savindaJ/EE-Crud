@@ -1,4 +1,4 @@
-let baseUrl = "http://192.168.89.174:8081/app/";
+let baseUrl = "http://localhost:8080/app/";
 $('.delete').on('click', function () {
     $(`#tblCustomer tr`).on('click', function () {
         var $row = $(this).closest("tr");
