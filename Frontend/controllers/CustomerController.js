@@ -9,12 +9,6 @@ $('.delete').on('click', function () {
             dataType: "json",
             data: {
                 id: $tds.text()
-            },
-            success: function (res) {
-
-            },
-            error: function (err) {
-
             }
         });
     });
@@ -31,12 +25,6 @@ function bindEvent() {
                 dataType: "json",
                 data: {
                     id: $tds.text()
-                },
-                success: function (res) {
-
-                },
-                error: function (err) {
-
                 }
             });
         });
