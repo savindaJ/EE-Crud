@@ -101,7 +101,7 @@ public class CustomerServlet extends HttpServlet {
             obj.add("state", "err");
             obj.add("message", e.getLocalizedMessage());
             obj.add("data", "");
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);  // 400 // Client Side Errors
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             resp.getWriter().print(obj.build());
         }
 
