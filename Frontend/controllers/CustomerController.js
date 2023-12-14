@@ -3,10 +3,11 @@ $('.delete').on('click', function () {
     $(`#tblCustomer tr`).on('click', function () {
         var $row = $(this).closest("tr");
         $tds = $row.find("td:nth-child(1)");
+        console.log($tds.text())
         $.ajax({
             url: baseUrl + "customer",
             type: "delete",
-            dataType: "json",
+            dataType: "application/json",
             data: {
                 id: $tds.text()
             }
@@ -22,7 +23,7 @@ function bindEvent() {
             $.ajax({
                 url: baseUrl + "customer",
                 type: "delete",
-                dataType: "json",
+                dataType: "application/json",
                 data: {
                     id: $tds.text()
                 }
