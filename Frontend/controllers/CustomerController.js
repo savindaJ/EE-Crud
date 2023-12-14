@@ -1,9 +1,13 @@
 let baseUrl = "http://192.168.89.174:8081/app/";
-
+$('.delete').on('click',function (){
+    $(`#tblCustomer tr`).on('click',function () {
+        $(this).closest().remove();
+    });
+});
 function bindEvent() {
     $('.delete').on('click',function (){
         $(`#tblCustomer tr`).on('click',function () {
-
+            $(this).closest("#tblCustomer tr").remove();
         });
     });
 
@@ -46,11 +50,7 @@ function loadAllCustomers() {
                    
                              </tr>`);
 
-                $('.delete').on('click',function (){
-                    $(`#tblCustomer tr`).on('click',function () {
-
-                    });
-                });
+               bindEvent();
             }
         },
         error:function (err) {
