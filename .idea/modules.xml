@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EE-CrudOparation.iml" filepath="$PROJECT_DIR$/EE-CrudOparation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Frontend.iml" filepath="$PROJECT_DIR$/Frontend.iml" />
     </modules>
   </component>
 </project>

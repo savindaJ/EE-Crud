@@ -1,4 +1,4 @@
-let baseUrl = "http://192.168.89.174:8080/app/";
+let baseUrl = "http://192.168.89.174:8081/app/";
 
 function loadAllCustomers() {
     $.ajax({
