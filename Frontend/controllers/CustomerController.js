@@ -1,5 +1,26 @@
 let baseUrl = "http://192.168.89.174:8081/app/";
 
+function bindEvent() {
+    $('.delete').on('click',function (){
+        alert("delete")
+    });
+
+    $(`#tblCustomer tr`).click(function () {
+
+        var $row = $(this).closest("tr");        // Finds the closest row <tr>
+        $tds = $row.find("td:nth-child(1)");
+        $ts = $row.find("td:nth-child(2)");
+        $tt = $row.find("td:nth-child(3)");
+        $tf = $row.find("td:nth-child(4)");
+        // let td_list =  $();
+
+        $(`#upCID`).val($tds.text());
+        $(`#upCName`).val($ts.text());
+        $(`#upCAddress`).val($tt.text());
+        $(`#upCTp`).val($tf.text());
+    });
+}
+
 function loadAllCustomers() {
     $.ajax({
         url: baseUrl + "customer",
@@ -19,6 +40,8 @@ function loadAllCustomers() {
                                 </button>
                                 <button class="btn btn-danger me-3 btn-sm delete">Delete</button></td>
                 </tr>`);
+
+                bindEvent();
             }
         },
         error:function (err) {
