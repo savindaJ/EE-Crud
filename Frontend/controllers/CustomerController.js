@@ -23,7 +23,22 @@ $('.delete').on('click', function () {
 function bindEvent() {
     $('.delete').on('click', function () {
         $(`#tblCustomer tr`).on('click', function () {
-            $(this).closest("#tblCustomer tr").remove();
+            var $row = $(this).closest("tr");
+            $tds = $row.find("td:nth-child(1)");
+            $.ajax({
+                url: baseUrl + "customer",
+                type: "delete",
+                dataType: "json",
+                data: {
+                    id: $tds.text()
+                },
+                success: function (res) {
+
+                },
+                error: function (err) {
+
+                }
+            });
         });
     });
 
