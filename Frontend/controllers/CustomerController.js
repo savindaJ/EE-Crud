@@ -67,7 +67,10 @@ $('#btnSaveCustomer').on('click',function () {
        type: "post",
        dataType: "json",
        data:{
-           name:"savinda"
+           id: $('#customer-id').val(),
+           name: $('#customer-name').val(),
+           address: $('#customer-address').val(),
+           salary: $('#customer-salary').val()
        },
        success:function (res) {
 

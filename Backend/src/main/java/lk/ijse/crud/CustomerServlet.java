@@ -67,7 +67,36 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("post req !");
-        System.out.println(req.getParameter("name"));
+        System.out.println("come post !");
+        String id = req.getParameter("id");
+        System.out.println(id);
+        String name = req.getParameter("name");
+        System.out.println(name);
+        String address = req.getParameter("address");
+        Double salary = Double.parseDouble(req.getParameter("salary"));
+        System.out.println(salary);
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thogakade", "root", "80221474");
+            PreparedStatement pstm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?)");
+            pstm.setString(1,id);
+            pstm.setString(2,name);
+            pstm.setString(3,address);
+            pstm.setDouble(4,salary);
+
+            if ( pstm.executeUpdate()>0){
+                JsonObjectBuilder obj = Json.createObjectBuilder();
+                obj.add("state", "OK");
+                obj.add("message", "Successfully Loaded..!");
+                resp.setStatus(200);
+                resp.getWriter().print(obj.build());
+                System.out.println("saved !");
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
