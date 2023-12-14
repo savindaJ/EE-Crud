@@ -1,10 +1,10 @@
 let baseUrl = "http://192.168.89.174:8081/app/";
-$('.delete').on('click',function (){
-    alert("delete")
-});
+
 function bindEvent() {
     $('.delete').on('click',function (){
-        alert("delete")
+        $(`#tblCustomer tr`).on('click',function () {
+
+        });
     });
 
     $(`#tblCustomer tr`).click(function () {
