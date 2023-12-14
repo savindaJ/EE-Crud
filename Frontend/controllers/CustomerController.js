@@ -73,10 +73,12 @@ $('#btnSaveCustomer').on('click',function () {
            salary: $('#customer-salary').val()
        },
        success:function (res) {
+           loadAllCustomers();
            alert(res.message);
        },
        error:function (err) {
-           alert(err.message);
+           let parse = JSON.parse(err.responseText);
+           alert(parse.message);
        }
    })
 });

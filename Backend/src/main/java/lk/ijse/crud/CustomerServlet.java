@@ -89,6 +89,7 @@ public class CustomerServlet extends HttpServlet {
                 JsonObjectBuilder obj = Json.createObjectBuilder();
                 obj.add("state", "OK");
                 obj.add("message", "Successfully saved..!");
+                obj.add("data","");
                 resp.setStatus(200);
                 resp.getWriter().print(obj.build());
                 System.out.println("saved !");
@@ -98,6 +99,7 @@ public class CustomerServlet extends HttpServlet {
             JsonObjectBuilder obj = Json.createObjectBuilder();
             obj.add("state", "Error");
             obj.add("message", "Not Successfully saved..!");
+            obj.add("data","");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             resp.getWriter().print(obj.build());
             System.out.println("not !");
