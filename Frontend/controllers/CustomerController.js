@@ -53,6 +53,7 @@ function loadAllCustomers() {
 
                 bindEvent();
             }
+            alert(resp.message);
         },
         error: function (err) {
             let parse = JSON.parse(err.responseText);
