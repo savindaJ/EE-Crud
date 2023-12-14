@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WEB | POS</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+<header class="z-3 position-fixed container-fluid">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top rounded-4 " style="height: 60px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="bi bi-buildings-fill text-black"></i><h4
+                    class="d-inline"> Thogakade</h4></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+
+
+                <div class="d-flex w-100 justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+<!--                            <a class="nav-link active" aria-current="page" id="nav-log-out"><h6 class="d-inline">-->
+<!--                                Log-out <i class="bi bi-box-arrow-in-right"></i></h6></a>-->
+                            <div>
+                                <h4 id="time"></h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="d-flex overflow-auto" id="main-root">
+        <!--dashboard-->
+
+
+        <!--customer-->
+        <section>
+            <section
+                    class="d-flex full-height flex-column col-10 col-md-10 bg-body-secondary shadow-lg rounded-4 m-auto mt-5"
+                    id="customer">
+                <div class="container mt-1">
+
+                    <div class="d-flex justify-content-lg-end">
+
+                        <div class="row" style="width: 20vw">
+                            <div class="col-12 col-md-4 mt-1">
+                                <button id="getAllCustomer" class="btn btn-dark btn-sm" type="submit"
+                                        style="height: 30px">Get All
+                                </button>
+                            </div>
+
+                            <div class="col-12 col-md-8 mt-1">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" style="height: 30px">
+                                    + Add New
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <form class="row w-50" role="" method="">
+
+                        <div class="col-12 col-md-6 ">
+                            <input class="form-control me-2 mb-2 mb-lg-0 shadow-sm" type=""
+                                   placeholder="Enter Name/TP/Address"
+                                   aria-label="Search" id="txtSearch" style="height: 30px">
+                        </div>
+                        <div class="col-12 col-md-3 ">
+                            <select class="btn btn-warning dropdown-toggle me-2 mb-2 mb-lg-0" type="button"
+                                    id="cusSearch"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <option><a class="dropdown-item" href="#">Customer Id</a></option>
+                                <option><a class="dropdown-item" href="#">Name</a></option>
+                            </select>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="row d-flex overflow-auto h-75 col-lg-10 col-12 m-auto">
+                    <table class="table table-striped table-hover border mt-2 z-0" id="tblCustomer">
+                        <thead class="table-bordered sticky-top overflow-auto table-info">
+                        <tr>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Address</th>
+                            <th scope="col">Customer Salary</th>
+                            <th scope="col">ON Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="body">
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h1 class="modal-title fs-6 text-white" id="exampleModalLabel">Insert Customer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label">ID</label>
+                                        <input id="customer-gmail" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Customer Name</label>
+                                        <input id="customer-name" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Customer address</label>
+                                        <input id="customer-address" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Customer TP</label>
+                                        <input id="customer-tp" type="text" class="form-control" placeholder="">
+                                    </div>
+
+                                    <button id="btnSaveCustomer" type="button"  class="btn btn-primary">Add Customer
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--update modal-->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <h1 class="modal-title fs-6 text-white" id="exampleModalLabel2">Update Customer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label" >ID</label>
+                                        <input id="upCID" type="email" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" >Customer Name</label>
+                                        <input id="upCName" type="email" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" >Customer address</label>
+                                        <input id="upCAddress" type="email" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" >Customer TP</label>
+                                        <input id="upCTp" type="email" class="form-control" placeholder="">
+                                    </div>
+
+                                    <button id="updateCustomer" type="button" class="btn btn-primary">Update Customer</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!--order-->
+
+
+        <!--item-->
+
+
+        <!--order detail-->
+
+
+    </section>
+</main>
+
+<script src="assets/js/sweetAlerts.js"></script>
+<script src="assets/js/code.jquery.com_jquery-3.7.1.min.js.js"></script>
+<script src="assets/js/bootstrap.bundle.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="controllers/CustomerController.js"></script>
+<script src="models/Customer.js"></script>
+<script src="util/validation/CustomerValidations.js"></script>
+
+</body>
+</html>
