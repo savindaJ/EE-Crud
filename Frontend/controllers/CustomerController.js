@@ -1,7 +1,22 @@
 let baseUrl = "http://192.168.89.174:8081/app/";
 $('.delete').on('click', function () {
     $(`#tblCustomer tr`).on('click', function () {
-        $(this).closest().remove();
+        var $row = $(this).closest("tr");
+        $tds = $row.find("td:nth-child(1)");
+        $.ajax({
+            url: baseUrl + "customer",
+            type: "delete",
+            dataType: "json",
+            data: {
+                id: $tds.text()
+            },
+            success: function (res) {
+
+            },
+            error: function (err) {
+
+            }
+        });
     });
 });
 
@@ -75,7 +90,7 @@ $('#btnSaveCustomer').on('click', function () {
             salary: $('#customer-salary').val()
         },
         success: function (res) {
-            // loadAllCustomers();
+            loadAllCustomers();
             alert(res.message);
         },
         error: function (err) {

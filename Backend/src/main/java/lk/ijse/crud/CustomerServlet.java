@@ -67,6 +67,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         System.out.println("come post !");
         String id = req.getParameter("id");
         System.out.println(id);
@@ -104,5 +105,10 @@ public class CustomerServlet extends HttpServlet {
             resp.getWriter().print(obj.build());
         }
 
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(req.getParameter("id"));
     }
 }
