@@ -104,4 +104,12 @@ $('#btnSaveCustomer').on('click', function () {
     });
 });
 
+$('#getAllCustomer').on('click',function (){
+    $.ajax({
+        url:baseUrl+"customer",
+        type:"delete",
+        dataType:"json"
+    })
+});
+
 loadAllCustomers();
