@@ -15,7 +15,7 @@ function bindEvent() {
                     dataType: "application/json"
                 });
             }else {
-                alert("delete cancel !")
+                alert("delete cancel !");
             }
 
     });
@@ -26,9 +26,8 @@ function bindEvent() {
         $ts = $row.find("td:nth-child(2)");
         $tt = $row.find("td:nth-child(3)");
         $tf = $row.find("td:nth-child(4)");
-
-
         $(`#upCID`).val($tds.text());
+        $(`#upCID`).prop('disabled', true);
         $(`#upCName`).val($ts.text());
         $(`#upCAddress`).val($tt.text());
         $(`#upCTp`).val($tf.text());
@@ -70,8 +69,6 @@ function loadAllCustomers() {
         }
     })
 }
-
-
 $('#btnSaveCustomer').on('click', function () {
     $.ajax({
         url: baseUrl + "customer",
@@ -93,16 +90,15 @@ $('#btnSaveCustomer').on('click', function () {
         }
     });
 });
-
 $('#btnUpdate').on('click',function () {
     $.ajax({
         url: baseUrl + "customer",
         type: "put",
-        dataType: "json",
-        data: JSON.stringify({
+        dataType: "application/json",
+        data: {
             id:"Coo1"
-        })
-    });
+        }
+    })
 });
 
 loadAllCustomers();
