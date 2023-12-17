@@ -1,4 +1,15 @@
-let baseUrl = "http://localhost:8080/app/";
+let baseUrl = "http://localhost:8081/app/";
+
+$('#getAllCustomer').on('click',function (){
+    $.ajax({
+        url: baseUrl + "customer",
+        type: "delete",
+        dataType: "application/json",
+        data: {
+            id: "C001"
+        }
+    });
+});
 $('.delete').on('click', function () {
     $(`#tblCustomer tr`).on('click', function () {
         var $row = $(this).closest("tr");
@@ -102,14 +113,6 @@ $('#btnSaveCustomer').on('click', function () {
             alert(parse.message);
         }
     });
-});
-
-$('#getAllCustomer').on('click',function (){
-    $.ajax({
-        url:baseUrl+"customer",
-        type:"delete",
-        dataType:"json"
-    })
 });
 
 loadAllCustomers();
