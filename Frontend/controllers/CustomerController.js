@@ -1,60 +1,38 @@
 let baseUrl = "http://localhost:8081/app/";
 
-$('#getAllCustomer').on('click',function (){
-    $.ajax({
-        url: baseUrl + "customer",
-        type: "delete",
-        dataType: "application/json",
-        data: {
-            id: "C001"
-        }
-    });
-});
-$('.delete').on('click', function () {
-    $(`#tblCustomer tr`).on('click', function () {
-        var $row = $(this).closest("tr");
-        $tds = $row.find("td:nth-child(1)");
-        console.log($tds.text())
-        $.ajax({
-            url: baseUrl + "customer",
-            type: "delete",
-            dataType: "application/json",
-            data: {
-                id: $tds.text()
-            }
-        });
-    });
+$('#getAllCustomer').on('click', function () {
+    loadAllCustomers();
 });
 
 function bindEvent() {
     $('.delete').on('click', function () {
-        $(`#tblCustomer tr`).on('click', function () {
             var $row = $(this).closest("tr");
             $tds = $row.find("td:nth-child(1)");
-            $.ajax({
-                url: baseUrl + "customer",
-                type: "delete",
-                dataType: "application/json",
-                data: {
-                    id: $tds.text()
-                }
-            });
-        });
+            if (confirm("are you sure to delete this customer ?")){
+                $.ajax({
+                    url: baseUrl + "customer?id="+$tds.text(),
+                    type: "delete",
+                    dataType: "application/json"
+                });
+            }else {
+                alert("delete cancel !")
+            }
+
     });
 
-    $(`#tblCustomer tr`).click(function () {
-
-        var $row = $(this).closest("tr");        // Finds the closest row <tr>
+    $(`.btnEdit`).on('click', function () {
+        var $row = $(this).closest("tr");
         $tds = $row.find("td:nth-child(1)");
         $ts = $row.find("td:nth-child(2)");
         $tt = $row.find("td:nth-child(3)");
         $tf = $row.find("td:nth-child(4)");
-        // let td_list =  $();
+
 
         $(`#upCID`).val($tds.text());
         $(`#upCName`).val($ts.text());
         $(`#upCAddress`).val($tt.text());
         $(`#upCTp`).val($tf.text());
+
     });
 }
 
@@ -73,7 +51,7 @@ function loadAllCustomers() {
                                 <td>${customer.name}</td>
                                 <td>${customer.address}</td>
                                 <td>${customer.salary}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+                                <td><button type="button" class="btn btn-primary btn-sm me-2 btnEdit" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal2">
                                     Edit
                                 </button>
@@ -81,9 +59,10 @@ function loadAllCustomers() {
                    
                              </tr>`);
 
-                bindEvent();
+
             }
             alert(resp.message);
+            bindEvent();
         },
         error: function (err) {
             let parse = JSON.parse(err.responseText);
@@ -112,6 +91,17 @@ $('#btnSaveCustomer').on('click', function () {
             let parse = JSON.parse(err.responseText);
             alert(parse.message);
         }
+    });
+});
+
+$('#btnUpdate').on('click',function () {
+    $.ajax({
+        url: baseUrl + "customer",
+        type: "put",
+        dataType: "json",
+        data: JSON.stringify({
+            id:"Coo1"
+        })
     });
 });
 
