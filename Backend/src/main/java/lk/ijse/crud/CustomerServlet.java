@@ -108,9 +108,32 @@ public class CustomerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String id = req.getParameter("id");
-        System.out.println(id);
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thogakade", "root", "80221474");
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM customer WHERE customerId=?");
+            pstm.setString(1,req.getParameter("id"));
+
+
+            if ( pstm.executeUpdate()>0){
+                JsonObjectBuilder obj = Json.createObjectBuilder();
+                obj.add("state", "OK");
+                obj.add("message", "Successfully Deleted..!");
+                obj.add("data","");
+                resp.setStatus(200);
+                resp.getWriter().print(obj.build());
+                System.out.println("saved !");
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            JsonObjectBuilder obj = Json.createObjectBuilder();
+            obj.add("state", "err");
+            obj.add("message", e.getLocalizedMessage());
+            obj.add("data", "");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.getWriter().print(obj.build());
+        }
     }
 
     @Override

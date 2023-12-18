@@ -12,8 +12,17 @@ function bindEvent() {
                 $.ajax({
                     url: baseUrl + "customer?id="+$tds.text(),
                     type: "delete",
-                    dataType: "application/json"
+                    dataType: "application/json",
+                    success:function (res) {
+                        alert(res.message);
+
+                    },
+                    error:function (err) {
+                        let parse = JSON.parse(err.responseText);
+                        alert(parse.message);
+                    }
                 });
+                loadAllCustomers();
             }else {
                 alert("delete cancel !");
             }
