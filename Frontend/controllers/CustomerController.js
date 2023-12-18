@@ -94,10 +94,7 @@ $('#btnUpdate').on('click',function () {
     $.ajax({
         url: baseUrl + "customer",
         type: "put",
-        dataType: "application/json",
-        data: {
-            id:"Coo1"
-        }
+        dataType: "application/json"
     })
 });
 
