@@ -116,6 +116,5 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("put !");
-        System.out.println(req.getParameter("id"));
     }
 }
