@@ -13,17 +13,7 @@ public class RespMessage <T> {
     private String state;
     private String message;
     private ArrayList<T> data;
-
-    public RespMessage(String state, String message, ArrayList<T> data) {
-        this.state = state;
-        this.message = message;
-        this.data = data;
-    }
-
-    public RespMessage() {
-
-    }
-
+    public RespMessage() {}
     public String createMassage(String state, String message, ArrayList<T> list){
         this.state = state;
         this.message = message;
