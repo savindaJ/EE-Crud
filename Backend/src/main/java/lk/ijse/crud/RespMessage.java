@@ -1,5 +1,7 @@
 package lk.ijse.crud;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 /**
@@ -16,5 +18,16 @@ public class RespMessage <T> {
         this.state = state;
         this.message = message;
         this.data = data;
+    }
+
+    public RespMessage() {
+
+    }
+
+    public String createMassage(String state, String message, ArrayList<T> list){
+        this.state = state;
+        this.message = message;
+        this.data = list;
+        return new Gson().toJson(this);
     }
 }

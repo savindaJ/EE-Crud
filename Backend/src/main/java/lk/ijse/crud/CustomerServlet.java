@@ -136,9 +136,13 @@ public class CustomerServlet extends HttpServlet {
         customers.add(customer1);
         customers.add(customer2);
 
-        RespMessage<Customer> jsonObj = new RespMessage<>("ok", "Successfully", customers);
+        /*RespMessage<Customer> jsonObj = new RespMessage<>("ok", "Successfully", customers);
 
-        String json = new Gson().toJson(jsonObj);
+        String json = new Gson().toJson(jsonObj);*/
+
+        RespMessage<Customer> msg = new RespMessage<>();
+
+        String json = msg.createMassage("ok", "Successfully", customers);
 
         resp.getWriter().println(json);
     }
