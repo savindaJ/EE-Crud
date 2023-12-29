@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:8081/app/";
+let baseUrl = "http://192.168.157.174:8081/app/";
 
 $('#getAllCustomer').on('click', function () {
     loadAllCustomers();
