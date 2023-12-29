@@ -118,7 +118,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Customer customer = new Customer("C001", "kamalanath", "Galle", 125040.8);
+        /*Customer customer = new Customer("C001", "kamalanath", "Galle", 125040.8);
         Customer customer1= new Customer("C002", "savinda", "Dickwalla", 135000.8);
         Customer customer2 = new Customer("C003", "surath", "india", 125000.8);
         ArrayList<Customer> customers = new ArrayList<>();
@@ -126,6 +126,12 @@ public class CustomerServlet extends HttpServlet {
         customers.add(customer1);
         customers.add(customer2);
         String json = new Gson().toJson(customers);
+        resp.getWriter().println(json);*/
+
+        RespMessage<Customer> jsonObj = new RespMessage<>("ok", "Successfully", null);
+
+        String json = new Gson().toJson(jsonObj);
+
         resp.getWriter().println(json);
     }
 }

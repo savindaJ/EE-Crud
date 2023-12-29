@@ -107,10 +107,9 @@ $('#btnUpdate').on('click',function () {
         dataType: "json",
         data: JSON.stringify(id),
         success:function (res) {
+            console.log(res.message)
             console.log(res)
-            for (const cus of res) {
-                console.log(cus.cusId)
-            }
+
         },
         error:function (err) {
             alert("Bad Request !")
