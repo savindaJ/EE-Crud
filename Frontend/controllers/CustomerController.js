@@ -107,7 +107,7 @@ $('#btnUpdate').on('click',function () {
         dataType: "json",
         data: JSON.stringify(id),
         success:function (res) {
-            console.log(res.message)
+            console.log(res.data)
             console.log(res)
 
         },
