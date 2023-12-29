@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:8081/app/";
+let baseUrl = "http://localhost:8080/app/";
 
 $('#getAllCustomer').on('click', function () {
     loadAllCustomers();
@@ -12,17 +12,14 @@ function bindEvent() {
                 $.ajax({
                     url: baseUrl + "customer?id="+$tds.text(),
                     type: "delete",
-                    dataType: "application/json",
+                    dataType: "json",
                     success:function (res) {
-                        alert(res.message);
-
+                        alert("Customer Deleted !")
                     },
                     error:function (err) {
-                        let parse = JSON.parse(err.responseText);
-                        alert(parse.message);
+                        alert("Customer Not Deleted !")
                     }
                 });
-                loadAllCustomers();
             }else {
                 alert("delete cancel !");
             }
@@ -100,10 +97,21 @@ $('#btnSaveCustomer').on('click', function () {
     });
 });
 $('#btnUpdate').on('click',function () {
+
+    const id = {id:"C001"}
+
+
     $.ajax({
         url: baseUrl + "customer",
         type: "put",
-        dataType: "application/json"
+        dataType: "json",
+        data: JSON.stringify(id),
+        success:function (res) {
+            alert("Deleted !")
+        },
+        error:function (err) {
+            alert("Bad Request !")
+        }
     })
 });
 
