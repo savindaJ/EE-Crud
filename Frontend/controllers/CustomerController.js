@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:8080/app/";
+let baseUrl = "http://localhost:8081/app/";
 
 $('#getAllCustomer').on('click', function () {
     loadAllCustomers();
@@ -107,7 +107,7 @@ $('#btnUpdate').on('click',function () {
         dataType: "json",
         data: JSON.stringify(id),
         success:function (res) {
-            alert("Deleted !")
+            console.log(res)
         },
         error:function (err) {
             alert("Bad Request !")

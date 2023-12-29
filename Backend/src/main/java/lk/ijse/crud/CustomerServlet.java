@@ -1,5 +1,7 @@
 package lk.ijse.crud;
 
+import com.google.gson.Gson;
+
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * @author : savindaJ
@@ -115,7 +118,14 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("put !");
-        System.out.println(req.getParameter("id"));
+        Customer customer = new Customer("C001", "kamalanath", "Galle", 125040.8);
+        Customer customer1= new Customer("C002", "savinda", "Dickwalla", 135000.8);
+        Customer customer2 = new Customer("C003", "surath", "india", 125000.8);
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(customer);
+        customers.add(customer1);
+        customers.add(customer2);
+        String json = new Gson().toJson(customers);
+        resp.getWriter().println(json);
     }
 }
