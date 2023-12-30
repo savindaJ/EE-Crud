@@ -14,6 +14,7 @@ function bindEvent() {
                     type: "delete",
                     dataType: "json",
                     success:function (res) {
+                        loadAllCustomers();
                         alert("Customer Deleted !")
                     },
                     error:function (err) {
