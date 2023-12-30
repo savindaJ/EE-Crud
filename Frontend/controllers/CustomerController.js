@@ -1,4 +1,4 @@
-let baseUrl = "http://192.168.157.174:8081/app/";
+let baseUrl = "http://192.168.45.174:8081/app/";
 
 $('#getAllCustomer').on('click', function () {
     loadAllCustomers();
@@ -107,7 +107,9 @@ $('#btnUpdate').on('click',function () {
         dataType: "json",
         data: JSON.stringify(id),
         success:function (res) {
+            console.log(res.message)
             console.log(res.data)
+            console.log(res.state)
             console.log(res)
 
         },
