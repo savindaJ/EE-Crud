@@ -15,10 +15,10 @@ function bindEvent() {
                     dataType: "json",
                     success:function (res) {
                         loadAllCustomers();
-                        alert("Customer Deleted !")
+                        alert(res.message)
                     },
                     error:function (err) {
-                        alert("Customer Not Deleted !")
+                        alert(err.message)
                     }
                 });
             }else {
