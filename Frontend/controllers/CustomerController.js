@@ -18,7 +18,7 @@ function bindEvent() {
                         alert(res.message)
                     },
                     error:function (err) {
-                        let parse = JSON.parse(error.responseText);
+                        let parse = JSON.parse(err.responseText);
                         alert(parse.message);
                     }
                 });
