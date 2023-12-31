@@ -8,23 +8,36 @@ function bindEvent() {
     $('.delete').on('click', function () {
         var $row = $(this).closest("tr");
         $tds = $row.find("td:nth-child(1)");
-        if (confirm("are you sure to delete this customer ?")) {
-            $.ajax({
-                url: baseUrl + "customer?id=" + $tds.text(),
-                type: "delete",
-                dataType: "json",
-                success: function (res) {
-                    loadAllCustomers();
-                    alert(res.message)
-                },
-                error: function (err) {
-                    let parse = JSON.parse(err.responseText);
-                    alert(parse.message);
-                }
-            });
-        } else {
-            alert("delete cancel !");
-        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl + "customer?id=" + $tds.text(),
+                    type: "delete",
+                    dataType: "json",
+                    success: function (res) {
+                        loadAllCustomers();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: res.message,
+                            icon: "success"
+                        });
+                    },
+                    error: function (err) {
+                        let parse = JSON.parse(err.responseText);
+                        alert(parse.message);
+                    }
+                });
+            }
+        });
 
     });
 
@@ -68,7 +81,7 @@ function loadAllCustomers() {
 
 
             }
-            alert(resp.message);
+            // alert(resp.message);
             bindEvent();
         },
         error: function (err) {
@@ -91,7 +104,14 @@ $('#btnSaveCustomer').on('click', function () {
         },
         success: function (res) {
             loadAllCustomers();
-            alert(res.message);
+            // alert(res.message);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: res.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
         },
         error: function (err) {
             let parse = JSON.parse(err.responseText);
@@ -102,9 +122,9 @@ $('#btnSaveCustomer').on('click', function () {
 $('#btnUpdate').on('click', function () {
 
     const customer = {
-        id:  $(`#upCID`).val(),
-        name:  $(`#upCName`).val(),
-        address:  $(`#upCAddress`).val(),
+        id: $(`#upCID`).val(),
+        name: $(`#upCName`).val(),
+        address: $(`#upCAddress`).val(),
         salary: $(`#upCTp`).val()
     }
 
@@ -115,7 +135,14 @@ $('#btnUpdate').on('click', function () {
         dataType: "json",
         data: JSON.stringify(customer),
         success: function (res) {
-            alert(res.message)
+            // alert(res.message)
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: res.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
             loadAllCustomers();
         },
         error: function (err) {
