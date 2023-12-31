@@ -76,7 +76,7 @@ $("#upCID,#upCName,#upCAddress,#upCTp").on("keydown keyup", function (e) {
     //check validations
     checkValidations(u_vArray[indexNo]);
 
-    setBtn();
+    // setBtn();
 
     //If the enter key pressed cheque and focus
     if (e.key == "Enter") {
