@@ -187,10 +187,10 @@ public class CustomerServlet extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thogakade", "root", "80221474");
             PreparedStatement pstm = connection.prepareStatement("UPDATE customer SET Name=? ,address=? ,salary=? WHERE customerId=?");
-            pstm.setString(1,name);
-            pstm.setString(2,address);
+            pstm.setString(1, name);
+            pstm.setString(2, address);
             pstm.setDouble(3, Double.parseDouble(salary));
-            pstm.setString(4,cusId);
+            pstm.setString(4, cusId);
 
             if (pstm.executeUpdate() > 0) {
                 RespMessage<Customer> message = new RespMessage<>();
