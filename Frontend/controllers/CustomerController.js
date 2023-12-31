@@ -122,9 +122,9 @@ $('#btnSaveCustomer').on('click', function () {
 $('#btnUpdate').on('click', function () {
 
     const customer = {
-        id:  $(`#upCID`).val(),
-        name:  $(`#upCName`).val(),
-        address:  $(`#upCAddress`).val(),
+        id: $(`#upCID`).val(),
+        name: $(`#upCName`).val(),
+        address: $(`#upCAddress`).val(),
         salary: $(`#upCTp`).val()
     }
 
@@ -135,7 +135,14 @@ $('#btnUpdate').on('click', function () {
         dataType: "json",
         data: JSON.stringify(customer),
         success: function (res) {
-            alert(res.message)
+            // alert(res.message)
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: res.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
             loadAllCustomers();
         },
         error: function (err) {
