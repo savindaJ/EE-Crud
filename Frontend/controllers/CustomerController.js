@@ -6,25 +6,25 @@ $('#getAllCustomer').on('click', function () {
 
 function bindEvent() {
     $('.delete').on('click', function () {
-            var $row = $(this).closest("tr");
-            $tds = $row.find("td:nth-child(1)");
-            if (confirm("are you sure to delete this customer ?")){
-                $.ajax({
-                    url: baseUrl + "customer?id="+$tds.text(),
-                    type: "delete",
-                    dataType: "json",
-                    success:function (res) {
-                        loadAllCustomers();
-                        alert(res.message)
-                    },
-                    error:function (err) {
-                        let parse = JSON.parse(err.responseText);
-                        alert(parse.message);
-                    }
-                });
-            }else {
-                alert("delete cancel !");
-            }
+        var $row = $(this).closest("tr");
+        $tds = $row.find("td:nth-child(1)");
+        if (confirm("are you sure to delete this customer ?")) {
+            $.ajax({
+                url: baseUrl + "customer?id=" + $tds.text(),
+                type: "delete",
+                dataType: "json",
+                success: function (res) {
+                    loadAllCustomers();
+                    alert(res.message)
+                },
+                error: function (err) {
+                    let parse = JSON.parse(err.responseText);
+                    alert(parse.message);
+                }
+            });
+        } else {
+            alert("delete cancel !");
+        }
 
     });
 
@@ -77,6 +77,7 @@ function loadAllCustomers() {
         }
     })
 }
+
 $('#btnSaveCustomer').on('click', function () {
     $.ajax({
         url: baseUrl + "customer",
@@ -98,24 +99,26 @@ $('#btnSaveCustomer').on('click', function () {
         }
     });
 });
-$('#btnUpdate').on('click',function () {
+$('#btnUpdate').on('click', function () {
 
-    const id = {id:"C001"}
+    const customer = {
+        id:  $(`#upCID`).val(),
+        name:  $(`#upCName`).val(),
+        address:  $(`#upCAddress`).val(),
+        salary: $(`#upCTp`).val()
+    }
 
 
     $.ajax({
         url: baseUrl + "customer",
         type: "put",
         dataType: "json",
-        data: JSON.stringify(id),
-        success:function (res) {
-            console.log(res.message)
-            console.log(res.data)
-            console.log(res.state)
-            console.log(res)
-
+        data: JSON.stringify(customer),
+        success: function (res) {
+            alert(res.message)
+            loadAllCustomers();
         },
-        error:function (err) {
+        error: function (err) {
             alert("Bad Request !")
         }
     })
